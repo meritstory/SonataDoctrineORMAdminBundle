@@ -203,6 +203,12 @@ final class ProxyQuery implements ProxyQueryInterface
             return $this;
         }
 
+        if (\str_contains($fieldMapping['fieldName'], '.')) {
+            $this->sortBy = $fieldMapping['fieldName'];
+
+            return $this;
+        }
+
         $alias = $this->entityJoin($parentAssociationMappings);
         $this->sortBy = $alias.'.'.$fieldMapping['fieldName'];
 
